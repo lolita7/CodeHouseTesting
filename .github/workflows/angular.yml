@@ -1,8 +1,8 @@
 # Nombre de workflow
 
-name: Mensaje por consola 
+name: Build de Angular app
 
-# Disparadores de este workflow/pipeline
+# Disparadores de este workflow/pipeline(trigers)
 
 on:
   push:
@@ -16,14 +16,24 @@ jobs:
   build:
     #Definimos sistema operativo(windows) sobre el que vamos a ejecutar los pasos a seguir
     runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
 
     # Pasos de nuestra cadena de montaje
     steps:
       #Carpeta en la que se situa
       - uses: actions/checkout@v2
-
-      # Ejecutamos script que lanza mensaje por consola
-      - name: Run a one-line script
-        run: echo Hello, world!
-
+      
+      - name: Instalar Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.8
+      - name: Instalar dependencias/ modulos
+        run: npm install
+      - name: Build/Ejecutar
+        run: npm run build -- --prod
+        
+       
+     
      
