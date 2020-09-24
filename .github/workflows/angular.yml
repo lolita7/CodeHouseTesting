@@ -34,7 +34,7 @@ jobs:
       - name: Build/Ejecutar
         run: npm run build -- --prod
       - name: Ejecutar tests
-        run: npm run tests-headless
+        run: npm run test-headless
         
         
        
