@@ -1,0 +1,29 @@
+# Nombre de workflow
+
+name: Mensaje por consola 
+
+# Disparadores de este workflow/pipeline
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# Pasos a seguir para comprobar calidad:
+
+jobs:
+  build:
+    #Definimos sistema operativo(windows) sobre el que vamos a ejecutar los pasos a seguir
+    runs-on: windows-latest
+
+    # Pasos de nuestra cadena de montaje
+    steps:
+      #Carpeta en la que se situa
+      - uses: actions/checkout@v2
+
+      # Ejecutamos script que lanza mensaje por consola
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+     
